@@ -1,0 +1,36 @@
+<div>
+    <p></p>
+    <h3>Страница выборки заказов</h3>
+    <p></p>
+
+    <div class="row g-2">
+        <div class="col-6 col-md-2">
+            <form novalidate ng-submit="loadOrders(min_price)">
+                <input class="form-control" type="text" placeholder="Минимальная сумма заказа" ng-model="min_price">
+                <p></p>
+                <button type="submit" class="btn btn-primary" >Применить</button>
+            </form>
+
+        </div>
+        <div class="col-sm-6 col-md-10">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td>ID заказа</td>
+                    <td>ID покупателя</td>
+                    <td>Сумма заказа</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat='o in orders'>
+                    <td>{{o.id}}</td>
+                    <td>{{o.customerId}}</td>
+                    <td>{{o.totalPrice}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+

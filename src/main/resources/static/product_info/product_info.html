@@ -1,0 +1,43 @@
+<div>
+    <p></p>
+    <h3>Страница выборки покупателей, которые приобрели указанный товар</h3>
+    <p></p>
+
+    <div class="row g-2">
+        <div class="col-6 col-md-2">
+            <form novalidate ng-submit="loadCustomers(product_id)">
+                <input class="form-control" type="text" placeholder="ID товара" ng-model="product_id">
+                <p></p>
+                <button type="submit" class="btn btn-primary">Применить</button>
+            </form>
+
+        </div>
+        <div class="col-sm-6 col-md-10">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td>ID покупателя</td>
+                    <td>Имя покупателя</td>
+                    <td>Email покупателя</td>
+                    <td></td>
+                    <td>Текст письма</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat='c in customers'>
+                    <td>{{c.id}}</td>
+                    <td>{{c.name}}</td>
+                    <td>{{c.email}}</td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="createBonusLetter(c.email)">Создать письмо</button>
+                    </td>
+                    <td>{{bonusletter.message}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
