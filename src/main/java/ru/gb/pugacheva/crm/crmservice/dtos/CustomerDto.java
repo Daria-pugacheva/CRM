@@ -15,6 +15,8 @@ public class CustomerDto {
     private int birthMonth;
     private int birthYear;
     private String email;
+    private String phone;
+
     // private List<OrderDto> orders;
 
     public CustomerDto(Customer customer) {
@@ -24,6 +26,7 @@ public class CustomerDto {
         this.birthMonth = customer.getBirthMonth();
         this.birthYear = customer.getBirthYear();
         this.email = customer.getEmail();
+        this.phone= customer.getPhone();
         // this.orders = customer.getOrders().stream().map(OrderDto::new).collect(Collectors.toList());
     }
 }

@@ -6,6 +6,7 @@ create table customers
     birth_month integer,
     birth_year  integer,
     email       varchar(255),
+    phone       varchar(255),
     created_at  timestamp default current_timestamp,
     updated_at  timestamp default current_timestamp
 );
@@ -40,9 +41,9 @@ insert into products (title, price)
 values ('Bread', 25),
        ('Milk', 80),
        ('Cheese', 100);
-insert into customers (name, birth_day, birth_month, birth_year, email)
-values ('Bob', 20, 12, 2000, 'bob_2000@gmail.com'),
-       ('Bill', 15, 12, 2001, 'bill_2001@gmail.com');
+insert into customers (name, birth_day, birth_month, birth_year, email,phone)
+values ('Bob', 20, 12, 2000, 'bob_2000@gmail.com', '1234567'),
+       ('Bill', 21, 12, 2001, 'bill_2001@gmail.com', '7654321');
 insert into orders (customer_id, total_price)
 values (1, 130),
        (2, 200);

@@ -8,4 +8,5 @@ import lombok.Data;
 public class Letter {
     private String address;
     private String message;
+    private String phone;
 }

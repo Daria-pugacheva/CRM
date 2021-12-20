@@ -28,6 +28,8 @@ public class Customer {
     private int birthYear;
     @Column(name = "email")
     private String email;
+    @Column(name = "phone")
+    private String phone;
 
 //    @OneToMany(mappedBy = "customer")
 //    private List <Order> orders;

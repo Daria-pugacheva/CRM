@@ -1,10 +1,7 @@
 package ru.gb.pugacheva.crm.crmservice.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.gb.pugacheva.crm.crmservice.dtos.Letter;
 import ru.gb.pugacheva.crm.crmservice.services.LetterService;
 
@@ -15,10 +12,15 @@ import ru.gb.pugacheva.crm.crmservice.services.LetterService;
 public class LetterController {
     private final LetterService letterService;
 
-    @GetMapping("/{address}/{type}")
-    public Letter createLetter(@PathVariable String address, @PathVariable LetterService.LetterType type) {
-        return letterService.createLetter(address, type);
+    @GetMapping("/{address}/{phone}/{type}")
+    public Letter createLetter(@PathVariable String address, @PathVariable String phone, @PathVariable LetterService.LetterType type) {
+        return letterService.createLetter(address,phone, type);
 
+    }
+
+    @PostMapping("/send")//TODO: можно потом расширить вриантами рассылки, которые будут в запросе фигурировать (только почта или еще доп.вайбер и т.п.)
+    public void sendLetter(@RequestBody Letter letter) {
+        letterService.sendLetter(letter);
     }
 
 }

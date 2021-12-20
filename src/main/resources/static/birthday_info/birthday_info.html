@@ -8,8 +8,10 @@
                 <td>ID</td>
                 <td>Имя</td>
                 <td>Email</td>
+                <td>Phone</td>
                 <td></td>
                 <td>Текст письма</td>
+                <td></td>
             </tr>
             </thead>
             <tbody>
@@ -17,10 +19,14 @@
                 <td>{{c.id}}</td>
                 <td>{{c.name}}</td>
                 <td>{{c.email}}</td>
+                <td>{{c.phone}}</td>
                 <td>
-                    <button class="btn btn-primary" ng-click="createLetter(c.email)">Создать письмо</button>
+                    <button class="btn btn-primary" ng-click="createLetter(c.email, c.phone)">Создать письмо</button>
                 </td>
                 <td>{{letter.message}}</td>
+                <td>
+                    <button class="btn btn-primary" ng-click="sendLetter()">Отправить письмо</button>
+                </td>
             </tr>
             </tbody>
         </table>

@@ -10,12 +10,22 @@ angular.module('crm-front').controller('productController', function ($scope, $h
         });
     };
 
-    $scope.createBonusLetter = function (address) {
+    $scope.createBonusLetter = function (address,phone) {
         $http ({
-            url: contextPath + 'api/v1/letters/' + address + '/BONUS',
+            url: contextPath + 'api/v1/letters/' + address + '/'+ phone + '/BONUS',
             method: 'GET',
         }).then(function (response) {
             $scope.bonusletter = response.data;
+        });
+    };
+
+    $scope.sendBonusLetter = function () {
+        $http ({
+            url: contextPath + 'api/v1/letters/send',
+            method: 'POST',
+            data: $scope.bonusletter
+        }).then(function (response) {
+            alert('Письмо успешно отправлено');
         });
     };
 

@@ -19,8 +19,10 @@
                     <td>ID покупателя</td>
                     <td>Имя покупателя</td>
                     <td>Email покупателя</td>
+                    <td>Телефон покупателя</td>
                     <td></td>
                     <td>Текст письма</td>
+                    <td></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,10 +30,14 @@
                     <td>{{c.id}}</td>
                     <td>{{c.name}}</td>
                     <td>{{c.email}}</td>
+                    <td>{{c.phone}}</td>
                     <td>
-                        <button class="btn btn-primary" ng-click="createBonusLetter(c.email)">Создать письмо</button>
+                        <button class="btn btn-primary" ng-click="createBonusLetter(c.email, c.phone)">Создать письмо</button>
                     </td>
                     <td>{{bonusletter.message}}</td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="sendBonusLetter()">Отправить письмо</button>
+                    </td>
                 </tr>
                 </tbody>
             </table>
