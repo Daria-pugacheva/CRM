@@ -29,5 +29,15 @@ angular.module('crm-front').controller('birthdayController', function ($scope, $
         });
     };
 
+    $scope.makeReport = function () {
+        $http ({
+            url: contextPath + 'api/v1/customers/report/' + $scope.name + '/BIRTH/0',
+            method: 'POST',
+            data: $scope.customers
+        }).then(function (response) {
+            alert('Отчет создан');
+        });
+    };
+
     $scope.loadCustomers();
 });

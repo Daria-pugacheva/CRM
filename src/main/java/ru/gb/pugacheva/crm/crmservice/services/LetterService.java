@@ -2,7 +2,12 @@ package ru.gb.pugacheva.crm.crmservice.services;
 
 import org.springframework.stereotype.Service;
 import ru.gb.pugacheva.crm.crmservice.dtos.Letter;
-import ru.gb.pugacheva.crm.crmservice.helpers.*;
+import ru.gb.pugacheva.crm.crmservice.helpers.createletters.BirthdayLetterFactory;
+import ru.gb.pugacheva.crm.crmservice.helpers.createletters.BonusLetterFactory;
+import ru.gb.pugacheva.crm.crmservice.helpers.createletters.LetterFactory;
+import ru.gb.pugacheva.crm.crmservice.helpers.sendingletters.SendingLetters;
+import ru.gb.pugacheva.crm.crmservice.helpers.sendingletters.StandartEmailLetterSender;
+import ru.gb.pugacheva.crm.crmservice.helpers.sendingletters.ViberLetterSender;
 
 
 @Service

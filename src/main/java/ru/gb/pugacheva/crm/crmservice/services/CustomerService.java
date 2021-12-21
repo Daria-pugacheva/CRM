@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 import ru.gb.pugacheva.crm.crmservice.dtos.CustomerDto;
 import ru.gb.pugacheva.crm.crmservice.entities.Customer;
 import ru.gb.pugacheva.crm.crmservice.entities.Order;
+import ru.gb.pugacheva.crm.crmservice.entities.Product;
+import ru.gb.pugacheva.crm.crmservice.helpers.makereports.AbstractReportMaker;
+import ru.gb.pugacheva.crm.crmservice.helpers.makereports.BirthdayReport;
+import ru.gb.pugacheva.crm.crmservice.helpers.makereports.ProductReport;
 import ru.gb.pugacheva.crm.crmservice.repositories.CustomerRepository;
 
 import java.util.ArrayList;
@@ -16,6 +20,7 @@ import java.util.stream.Collectors;
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private final OrderService orderService;
+    private final ProductService productService;
 
     public List<CustomerDto> findAllByBirthday(int day, int month) {
         return customerRepository.findAllByBirthDayAndAndBirthMonth(day, month).
@@ -29,6 +34,27 @@ public class CustomerService {
             customers.add(o.getCustomer());
         }
         return customers.stream().map(CustomerDto::new).collect(Collectors.toList());
+    }
+
+    public void makeReport(String name, List<CustomerDto> customers, ReportType type, Object... objects ){
+        AbstractReportMaker reportMaker;
+        switch (type){
+            case BIRTH:
+                 reportMaker = new BirthdayReport();
+                reportMaker.makeReport(name,customers);
+                break;
+            case BONUS:
+                 reportMaker = new ProductReport();
+                Product product = productService.findById((Long)objects[0]);
+                reportMaker.makeReport(name,customers,product);
+                break;
+            default:
+                throw new IllegalArgumentException("Создание отчетов такого типа не поддерживается");
+        }
+    }
+
+    public enum ReportType{
+        BIRTH, BONUS
     }
 
 
