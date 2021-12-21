@@ -1,4 +1,4 @@
-package ru.gb.pugacheva.crm.crmservice.helpers;
+package ru.gb.pugacheva.crm.crmservice.helpers.sendingletters;
 
 import lombok.RequiredArgsConstructor;
 import ru.gb.pugacheva.crm.crmservice.dtos.Letter;

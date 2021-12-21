@@ -42,6 +42,13 @@
                 </tbody>
             </table>
 
+            <h3>Формирование отчета</h3>
+            <form novalidate ng-submit="makeProductReport()">
+                <input class="form-control" type="text" placeholder="Введите имя исполнителя" ng-model="name">
+                <p></p>
+                <button type="submit" class="btn btn-primary" >Создать отчет</button>
+            </form>
+
         </div>
     </div>
 </div>
