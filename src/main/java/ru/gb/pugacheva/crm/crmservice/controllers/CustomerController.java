@@ -6,6 +6,7 @@ import ru.gb.pugacheva.crm.crmservice.dtos.CustomerDto;
 import ru.gb.pugacheva.crm.crmservice.services.CustomerService;
 
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping("/birthday")
-    public List<CustomerDto> findAlByBirthday() {
+    public List<CustomerDto> findAlByBirthday() throws SQLException {
         LocalDate date = LocalDate.now();
         int day = date.getDayOfMonth();
         int month = date.getMonthValue();
@@ -24,7 +25,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{productId}")
-    public List<CustomerDto> findAlByProductId(@PathVariable Long productId) {
+    public List<CustomerDto> findAlByProductId(@PathVariable Long productId) throws SQLException{
         return customerService.findAllByProductId(productId);
     }
 
