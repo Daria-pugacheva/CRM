@@ -16,7 +16,7 @@ public class OrderDto {
 
     public OrderDto(Order order) {
         this.id = order.getId();
-        this.customerId = order.getCustomer().getId();
+        this.customerId = order.getCustomerId();
         //   this.orderItems = order.getOrderItems();
         this.totalPrice = order.getTotalPrice();
     }

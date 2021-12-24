@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.gb.pugacheva.crm.crmservice.dtos.OrderDto;
 import ru.gb.pugacheva.crm.crmservice.entities.Order;
 import ru.gb.pugacheva.crm.crmservice.entities.OrderItem;
-import ru.gb.pugacheva.crm.crmservice.repositories.OrderRepository;
+//import ru.gb.pugacheva.crm.crmservice.repositories.OrderRepository;
+import ru.gb.pugacheva.crm.crmservice.repositories.OrderRepositoryForJDBC;
 
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class OrderService {
-    private final OrderRepository orderRepository;
+    //private final OrderRepository orderRepository;
+    private final OrderRepositoryForJDBC orderRepositoryForJDBC;
     private final OrderItemService orderItemService;
     private final ProductService productService;
 
@@ -23,15 +25,21 @@ public class OrderService {
         List<OrderItem> orderItems = orderItemService.findAllByProduct(productService.findById(productId));
         List<Order> orders = new ArrayList<>();
         for (OrderItem oi : orderItems) {
-            orders.add(oi.getOrder());
+            orders.add(orderRepositoryForJDBC.findById(oi.getOrderId()));
         }
         return orders;
     }
 
     public List<OrderDto> findAllByTotalPriceMoreThan(int totalPrice) {
-        return orderRepository.findAllByTotalPriceIsGreaterThan(totalPrice).
+        return orderRepositoryForJDBC.findAllByTotalPriceIsGreaterThan(totalPrice).
                 stream().map(OrderDto::new).collect(Collectors.toList());
     }
+
+//ВАриант под Hibernate
+//    public List<OrderDto> findAllByTotalPriceMoreThan(int totalPrice) {
+//        return orderRepository.findAllByTotalPriceIsGreaterThan(totalPrice).
+//                stream().map(OrderDto::new).collect(Collectors.toList());
+//    }
 
 
 }
